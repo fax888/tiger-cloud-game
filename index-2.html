@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050816">
+<title>Tiger Cloud Game | Play Anytime, Anywhere</title>
+<style>
+:root{--bg:#050816;--panel:#0a1022;--line:#1b2544;--orange:#ff8700;--text:#f6f7fb;--muted:#aab4d0;--purple:#a72cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input{font:inherit}button,a{ -webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}.wrap{width:min(1440px,94%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(5,8,22,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:24px;min-height:76px}.brand{display:flex;align-items:center;gap:10px;margin-right:auto;font-weight:900;line-height:.9;font-size:23px;letter-spacing:-.8px}.logo{font-size:37px}.brand small{display:block;color:var(--orange);font-size:12px;letter-spacing:1.5px;margin-top:5px}.navlinks{display:flex;gap:25px;align-items:center}.navlinks a{font-size:14px;color:#dce2f6}.navlinks a:hover{color:var(--orange)}.search{width:210px;background:#10162d;border:1px solid #252d53;border-radius:30px;padding:12px 15px;color:white;outline:none}.search:focus{border-color:var(--orange)}.btn{border:0;border-radius:12px;padding:12px 18px;background:var(--orange);color:#10101a;font-weight:800;cursor:pointer;transition:transform .15s,filter .15s}.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}.btn.ghost{background:transparent;color:#fff;border:1px solid #3a4573}.btn.small{padding:9px 13px;border-radius:9px;font-size:13px}
+.hero{position:relative;overflow:hidden;min-height:360px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:42px 4px}.hero:after{content:"";position:absolute;inset:0 0 0 35%;background:radial-gradient(ellipse at 70% 45%,rgba(123,25,230,.34),transparent 45%),radial-gradient(ellipse at 90% 65%,rgba(255,111,0,.24),transparent 42%);pointer-events:none}.hero-copy{position:relative;z-index:2}.eyebrow{color:var(--orange);font-weight:800;letter-spacing:1.5px;text-transform:uppercase;font-size:13px}.hero h1{font-size:clamp(36px,5vw,61px);line-height:1.02;letter-spacing:-2px;margin:14px 0}.hero h1 span{color:var(--orange)}.hero p{color:#c0c9e0;line-height:1.65;max-width:490px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:23px 0}.perks{display:flex;gap:26px;flex-wrap:wrap;margin-top:30px}.perk{font-size:13px;color:#dce2f6}.perk b{display:block;color:var(--orange);font-size:14px;margin-bottom:4px}.hero-art{position:relative;z-index:1;display:flex;justify-content:center;align-items:center;min-height:250px}.hero-art .tiger{font-size:clamp(95px,15vw,190px);filter:drop-shadow(0 12px 35px rgba(255,128,0,.24))}.hero-art .orbit{position:absolute;width:min(90%,460px);height:230px;border:1px solid rgba(255,135,0,.3);border-radius:50%;transform:rotate(-18deg)}.hero-art .orbit:before,.hero-art .orbit:after{content:"";position:absolute;border:1px solid rgba(144,50,255,.25);border-radius:50%;inset:18px -10px;transform:rotate(40deg)}.hero-art .orbit:after{inset:40px 25px;transform:rotate(-30deg)}.floating{position:absolute;background:#0c1328;border:1px solid #2a3155;border-radius:12px;padding:11px 14px;font-size:12px;box-shadow:0 12px 28px #0006}.float-one{right:0;top:30px}.float-two{left:0;bottom:25px}
+section{padding:27px 0}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.section-head h2{font-size:21px;margin:0}.muted{color:var(--muted);font-size:13px}.game-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:13px}.game-card{min-width:0;background:linear-gradient(180deg,#0c1429,#080d1d);border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:transform .2s,border-color .2s}.game-card:hover{transform:translateY(-3px);border-color:#7c4a22}.game-art{height:125px;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--c1),var(--c2))}.game-art:before{content:"";position:absolute;width:150px;height:150px;border:1px solid #ffffff35;border-radius:50%;right:-30px;top:-48px;box-shadow:0 0 0 18px #ffffff08,0 0 0 38px #ffffff06}.game-art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#080d1d8c,transparent 70%)}.game-emoji{font-size:53px;filter:drop-shadow(0 7px 10px #0007);z-index:1}.game-art strong{position:absolute;z-index:2;bottom:10px;left:10px;right:10px;font-size:15px;text-shadow:0 2px 6px #000;text-transform:uppercase;letter-spacing:.4px}.game-info{padding:12px}.game-info h3{font-size:14px;margin:0 0 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px}.tag{background:#1a2140;color:#dce2ff;border-radius:5px;padding:4px 6px;font-size:10px}.tag.orange{color:#ffb34f}.game-info .btn{width:100%;font-size:12px;padding:9px 5px}
+.feature-row{display:grid;grid-template-columns:1.1fr 1.2fr .8fr;gap:15px;padding:4px 0 28px}.feature{border:1px solid var(--line);background:linear-gradient(135deg,#10152e,#080d1c);border-radius:15px;padding:20px;min-height:155px}.feature h3{margin:0 0 9px;font-size:18px}.feature p{color:var(--muted);font-size:13px;line-height:1.6}.premium{background:linear-gradient(120deg,#240b4b,#0d1230 75%);border-color:#46226d}.crown{font-size:28px;color:#c35bff}.feature-list{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:16px}.feature-list b{font-size:13px}.feature-list small{display:block;color:var(--muted);font-size:11px;margin-top:5px}.device-icons{font-size:25px;letter-spacing:7px;margin-top:18px}
+footer{border-top:1px solid var(--line);padding:23px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.modal-backdrop{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:18px;z-index:50}.modal-backdrop.show{display:grid}.modal{max-width:430px;width:100%;background:#0b1226;border:1px solid #30395f;border-radius:18px;padding:25px;box-shadow:0 20px 80px #0008}.modal h2{margin-top:0}.modal p{color:var(--muted);line-height:1.6;font-size:14px}.modal .close{float:right;background:transparent;border:0;color:white;font-size:25px;cursor:pointer}.modal input{display:block;width:100%;padding:13px;margin:12px 0;background:#070c1b;color:white;border:1px solid #293253;border-radius:9px}.modal .btn{width:100%;margin-top:8px}.notice{font-size:12px!important;color:#ffca81!important}
+.empty{grid-column:1/-1;padding:28px;border:1px dashed #343d60;border-radius:12px;color:var(--muted);text-align:center}
+@media(max-width:1100px){.game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.nav{gap:13px}.navlinks{gap:14px}.search{width:160px}.feature-row{grid-template-columns:1fr 1fr}.feature:last-child{grid-column:1/-1}}
+@media(max-width:720px){.nav{flex-wrap:wrap;padding:12px 0;gap:12px}.brand{font-size:20px}.logo{font-size:31px}.navlinks{order:3;width:100%;justify-content:space-between;gap:8px}.navlinks a{font-size:12px}.search{width:100%;order:4}.nav>.btn{padding:10px 12px}.hero{grid-template-columns:1fr;padding:35px 0 20px}.hero-art{min-height:170px;grid-row:1}.hero-art .tiger{font-size:115px}.hero-art .orbit{height:145px}.float-one{right:5px;top:8px}.float-two{left:5px;bottom:5px}.hero h1{font-size:40px}.perks{gap:15px}.game-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.game-art{height:115px}.feature-row{grid-template-columns:1fr}.feature:last-child{grid-column:auto}.feature-list{gap:10px}}
+@media(max-width:360px){.navlinks a{font-size:11px}.game-info{padding:9px}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="Tiger Cloud Game home"><span class="logo">🐯</span><span>TIGER<small>CLOUD GAME</small></span></a>
+    <nav class="navlinks" aria-label="Main navigation"><a href="#home">⌂ Home</a><a href="#games">🎮 Games</a><a href="#about">ⓘ About</a><a href="#vip">♛ VIP</a><a href="#support">☏ Support</a></nav>
+    <input id="search" class="search" type="search" placeholder="⌕  Search games..." aria-label="Search games">
+    <button class="btn ghost small" data-modal="login">Login</button>
+    <button class="btn small" data-modal="signup">Sign Up</button>
+  </div>
+</header>
+<main class="wrap" id="home">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Play anytime, anywhere</div>
+      <h1>TIGER <span>CLOUD GAME</span></h1>
+      <p>Your favorite PC games, imagined in the cloud. Discover your next adventure from your phone, tablet, or PC.</p>
+      <div class="actions"><a class="btn" href="#games">▶ &nbsp; Start Playing</a><a class="btn ghost" href="#games">Explore Games</a></div>
+      <div class="perks"><div class="perk"><b>ϟ High Performance</b>Smooth gameplay*</div><div class="perk"><b>☁ Cloud Powered</b>Play anywhere*</div><div class="perk"><b>▣ Multi-Device</b>PC, Mobile, Tablet</div></div>
+    </div>
+    <div class="hero-art" aria-label="Tiger gaming artwork"><div class="orbit"></div><span class="tiger">🐅</span><div class="floating float-one">⚡ GAMING MODE<br><strong>LEVEL UP</strong></div><div class="floating float-two">🎮 YOUR NEXT<br><strong>ADVENTURE</strong></div></div>
+  </section>
+  <section id="games">
+    <div class="section-head"><h2>🔥 Popular Games</h2><span id="count" class="muted">6 games</span></div>
+    <div class="game-grid" id="gameGrid">
+      <article class="game-card" data-name="GTA V Grand Theft Auto Action Open World"><div class="game-art" style="--c1:#e7a36b;--c2:#352055"><span class="game-emoji">🚘</span><strong>Grand Theft Auto V</strong></div><div class="game-info"><h3>GTA V</h3><div class="tags"><span class="tag">Open World</span><span class="tag orange">Action</span></div><button class="btn" data-game="GTA V">▶ Play Now</button></div></article>
+      <article class="game-card" data-name="Forza Horizon 5 Racing Open World"><div class="game-art" style="--c1:#40bfe9;--c2:#e58b25"><span class="game-emoji">🏎️</span><strong>Forza Horizon 5</strong></div><div class="game-info"><h3>Forza Horizon 5</h3><div class="tags"><span class="tag">Racing</span><span class="tag orange">Open World</span></div><button class="btn" data-game="Forza Horizon 5">▶ Play Now</button></div></article>
+      <article class="game-card" data-name="Red Dead Redemption 2 Action Adventure"><div class="game-art" style="--c1:#be3428;--c2:#280d12"><span class="game-emoji">🤠</span><strong>Red Dead Redemption 2</strong></div><div class="game-info"><h3>Red Dead Redemption 2</h3><div class="tags"><span class="tag">Action</span><span class="tag orange">Adventure</span></div><button class="btn" data-game="Red Dead Redemption 2">▶ Play Now</button></div></article>
+      <article class="game-card" data-name="Cyberpunk 2077 RPG Action"><div class="game-art" style="--c1:#e9d82e;--c2:#33214c"><span class="game-emoji">🌆</span><strong>Cyberpunk 2077</strong></div><div class="game-info"><h3>Cyberpunk 2077</h3><div class="tags"><span class="tag">RPG</span><span class="tag orange">Open World</span></div><button class="btn" data-game="Cyberpunk 2077">▶ Play Now</button></div></article>
+      <article class="game-card" data-name="Elden Ring RPG Action"><div class="game-art" style="--c1:#c3a45b;--c2:#13252c"><span class="game-emoji">⚔️</span><strong>Elden Ring</strong></div><div class="game-info"><h3>Elden Ring</h3><div class="tags"><span class="tag">RPG</span><span class="tag orange">Action</span></div><button class="btn" data-game="Elden Ring">▶ Play Now</button></div></article>
+      <article class="game-card" data-name="Call of Duty Modern Warfare III FPS Action"><div class="game-art" style="--c1:#a62d22;--c2:#161b25"><span class="game-emoji">🎯</span><strong>Call of Duty</strong></div><div class="game-info"><h3>Call of Duty: MW III</h3><div class="tags"><span class="tag">FPS</span><span class="tag orange">Action</span></div><button class="btn" data-game="Call of Duty: MW III">▶ Play Now</button></div></article>
+    </div>
+  </section>
+  <section class="feature-row" id="about">
+    <div class="feature premium" id="vip"><div class="crown">♛</div><h3>Go Premium</h3><p>Unlock more games, faster queue, and exclusive benefits.</p><button class="btn" data-modal="vip">View VIP Plans</button></div>
+    <div class="feature"><h3>Why Choose Tiger Cloud Game?</h3><div class="feature-list"><div><b>🎮 Huge Game Library</b><small>Discover popular PC titles</small></div><div><b>⚡ Easy Access</b><small>One place for your games</small></div><div><b>🛡️ Privacy First</b><small>Never share your password</small></div><div><b>📱 Multiple Devices</b><small>Designed for small screens too</small></div></div></div>
+    <div class="feature" id="support"><h3>▣ Play on Any Device</h3><p>Designed for PC, mobile, and tablet screens.</p><div class="device-icons">📱 🎮 💻</div><button class="btn ghost small" data-modal="support">Contact Support</button></div>
+  </section>
+</main>
+<footer class="wrap"><span>© <span id="year"></span> Tiger Cloud Game. Fan-made demo concept.</span><span>Game titles and trademarks belong to their respective owners.</span></footer>
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><button class="close" id="closeModal" aria-label="Close dialog">×</button><h2 id="modalTitle">Tiger Cloud Game</h2><div id="modalContent"></div></div></div>
+<script>
+const backdrop=document.getElementById('modalBackdrop'), title=document.getElementById('modalTitle'), content=document.getElementById('modalContent');
+function showModal(kind,game=''){
+  const pages={
+    login:['Welcome back',`<p>This is a front-end demo. Account login is not connected yet.</p><form class="demo-form"><input type="email" placeholder="Email address" aria-label="Email address" required><input type="password" placeholder="Password" aria-label="Password" required><button class="btn" type="submit">Login</button></form><p class="notice">Demo only: do not enter a real password.</p>`],
+    signup:['Create your account',`<p>Signup will be available after a secure authentication service is connected.</p><form class="demo-form"><input type="text" placeholder="Username" aria-label="Username" required><input type="email" placeholder="Email address" aria-label="Email address" required><button class="btn" type="submit">Join Tiger Cloud Game</button></form><p class="notice">Demo only: this form does not create an account yet.</p>`],
+    vip:['VIP Membership',`<p><strong>VIP plans — coming soon</strong></p><p>Membership and payment are not enabled in this demo. We can add plans after the core site is ready.</p><button class="btn" id="vipOk">Got it</button>`],
+    support:['Support',`<p>Need help setting up Tiger Cloud Game?</p><p>Add your official support email here after you create one.</p><button class="btn" id="supportOk">Close</button>`],
+    play:['Game streaming not connected',`<p><strong>${game}</strong> is shown in the demo library, but its actual PC streaming service has not been connected.</p><p>To play real PC games, we need a compatible cloud PC/streaming provider and the relevant game licences. This button does not launch the game yet.</p><button class="btn" id="playOk">Understood</button>`]
+  };
+  const item=pages[kind]||pages.support;title.textContent=item[0];content.innerHTML=item[1];backdrop.classList.add('show');
+  content.querySelectorAll('.demo-form').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();content.innerHTML='<p>Demo form only — authentication is not connected yet.</p><button class="btn" id="done">Close</button>';document.getElementById('done').addEventListener('click',closeModal)}));
+  ['vipOk','supportOk','playOk'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',closeModal)});
+}
+function closeModal(){backdrop.classList.remove('show')}
+document.querySelectorAll('[data-modal]').forEach(b=>b.addEventListener('click',()=>showModal(b.dataset.modal)));
+document.querySelectorAll('[data-game]').forEach(b=>b.addEventListener('click',()=>showModal('play',b.dataset.game)));
+document.getElementById('closeModal').addEventListener('click',closeModal);
+backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.getElementById('year').textContent=new Date().getFullYear();
+const search=document.getElementById('search'), cards=[...document.querySelectorAll('.game-card')], count=document.getElementById('count');
+search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();let visible=0;cards.forEach(card=>{const show=card.dataset.name.toLowerCase().includes(q);card.hidden=!show;if(show)visible++});count.textContent=visible+' game'+(visible===1?'':'s');let empty=document.getElementById('emptyGames');if(!visible&&!empty){empty=document.createElement('div');empty.id='emptyGames';empty.className='empty';empty.textContent='No games found. Try another search.';document.getElementById('gameGrid').appendChild(empty)}else if(visible&&empty)empty.remove()});
+</script>
+</body>
+</html>
